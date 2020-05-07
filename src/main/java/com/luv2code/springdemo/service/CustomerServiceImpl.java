@@ -1,5 +1,6 @@
 package com.luv2code.springdemo.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -55,8 +56,8 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	@Transactional
-	public Customer saveCustomer(Customer theCustomer,String cookie) {
-		return customerDAO.saveCustomer(theCustomer,cookie);
+	public Customer saveCustomer(Customer theCustomer,String cookie,String imagurl) throws IOException {
+		return customerDAO.saveCustomer(theCustomer,cookie,imagurl);
 	}
 
 	@Override
@@ -215,6 +216,13 @@ public class CustomerServiceImpl implements CustomerService {
 	public accounts statementOfmonth(int custId, int year, String month) {
 		// TODO Auto-generated method stub
 		return accountsdaoImps.statementOfmonth(custId, year, month);
+	}
+
+	@Override
+	@Transactional
+	public void get_image(String imageurl) throws IOException {
+		  customerDAO.image_upload(imageurl);
+		
 	}
 
 	

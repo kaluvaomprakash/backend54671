@@ -1,15 +1,15 @@
 package com.luv2code.springdemo.entity;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -29,6 +29,9 @@ public class Customer {
     private String password;
 	@Column(name="name")
 	private String name;
+	@Lob
+    @Column(name="image", nullable=true, columnDefinition="blob")
+	private byte[] image;
 	@Column(name="details")
     private String details;
 	@Column(name="additional_charges")
@@ -42,6 +45,15 @@ public class Customer {
 	private LocalDate createdDate;
 	@Column(name="is_active")
 	private int isActive;
+	
+	
+	
+	public byte[] getImage() {
+		return image;
+	}
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 	public int getId() {
 		return id;
 	}
@@ -117,10 +129,12 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", hackerId=" + hackerId + ", lineId=" + lineId + ", mobileNumber=" + mobileNumber
-				+ ", password=" + password + ", name=" + name + ", details=" + details + ", addationalCharges="
-				+ addationalCharges + ", totalAmount=" + totalAmount + ", customerPaid=" + customerPaid
-				+ ", createdDate=" + createdDate + ", isActive=" + isActive + "]";
+				+ ", password=" + password + ", name=" + name + ", image=" + Arrays.toString(image) + ", details="
+				+ details + ", addationalCharges=" + addationalCharges + ", totalAmount=" + totalAmount
+				+ ", customerPaid=" + customerPaid + ", createdDate=" + createdDate + ", isActive=" + isActive + "]";
 	}
+	
+	
 	
 	
 	

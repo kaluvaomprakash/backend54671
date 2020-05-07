@@ -65,7 +65,7 @@ public class customerProductDAOimp implements customerProductDAO {
 
 	@Override
 	public List<customerProducts> newcustomerProudct(String token,List<customerProducts> thecustomerProdcut) {
-		int hackerid= new token_creation_validation().validate_token(token);
+		int hackerid = new token_creation_validation().validate_token(token);
 		double finalProductprice = 0.0;
 		LocalDate todayDate = LocalDate.now();
 		List al = new ArrayList<customerProducts>();
@@ -107,7 +107,7 @@ public class customerProductDAOimp implements customerProductDAO {
 		     Integer workingDays = occurenceOfdaysInMonth.get("mon")+ occurenceOfdaysInMonth.get("tue")+ occurenceOfdaysInMonth.get("wednes")
 		     +occurenceOfdaysInMonth.get("thur")+ occurenceOfdaysInMonth.get("fri")+ occurenceOfdaysInMonth.get("sat");
 		     custprodctItem.setId(0);
-		     //custprodctItem.setHackerId(1);//hacker ID
+		     custprodctItem.setHackerId(hackerid);//hacker ID
 		     custprodctItem.setCustomerId(onecustProduct.getCustomerId());//
 		     custprodctItem.setProductId(onecustProduct.getProductId());
 		     custprodctItem.setpMonth(todayDate.getMonth().toString());

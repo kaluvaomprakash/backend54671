@@ -1,5 +1,6 @@
 package com.luv2code.springdemo.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.luv2code.springdemo.dao.token_creation_validation;
 import com.luv2code.springdemo.entity.Customer;
@@ -36,15 +39,15 @@ public class customerController {
 		return customerservice.getCustomer(id);
 	}
 	@PostMapping("/newCustomer")
-	public Customer addCustomer(@CookieValue(value = "PPtoken") String cookie,@RequestBody Customer theCustomer) {
+	public Customer addCustomer(@CookieValue(value = "PPtoken") String cookie,@RequestBody Customer theCustomer,@RequestParam String theimage) throws IOException {
 		theCustomer.setHackerId(new token_creation_validation().validate_token(cookie));
 		theCustomer.setId(0);
-		return customerservice.saveCustomer(theCustomer,cookie);
+		return customerservice.saveCustomer(theCustomer,cookie,theimage);
 	}
 	@PutMapping("/updateCustomer")
-	public Customer updateCustomer(@CookieValue(value = "PPtoken") String cookie,@RequestBody Customer theCustomer) {
+	public Customer updateCustomer(@CookieValue(value = "PPtoken") String cookie,@RequestBody Customer theCustomer,@RequestParam String theimage) throws IOException {
 		theCustomer.setHackerId(new token_creation_validation().validate_token(cookie));
-		return customerservice.saveCustomer(theCustomer,cookie);
+		return customerservice.saveCustomer(theCustomer,cookie,theimage);
 	}
 	
 	@PostMapping("/d/{theId}")
@@ -57,6 +60,11 @@ public class customerController {
 	public Object customerCheck(@PathVariable String mNumber) {
 		return customerservice.checkCustomerlogin(mNumber);
 		
+	}
+	
+	@PostMapping("/saveImage")
+	public void saveImage(@RequestParam("file") String file) throws IOException {
+		customerservice.get_image(file);
 	}
 	
 	

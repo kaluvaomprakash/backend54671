@@ -1,5 +1,6 @@
 package com.luv2code.springdemo.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -15,13 +16,15 @@ public interface CustomerService {
 
 	public List<Customer> listCustomers(String cookie,int sLimit,int eLimit);
 
-	public Customer saveCustomer(Customer theCustomer,String cookie);
+	public Customer saveCustomer(Customer theCustomer,String cookie,String imagurl) throws IOException;
 
 	public Customer getCustomer(int theId);
 
 	public int deleteCustomer(String cookie,int theId);
 	
 	public Object checkCustomerlogin(String mobilenumber);
+	
+	public void get_image(String imageurl) throws IOException;
 	
 	
 	

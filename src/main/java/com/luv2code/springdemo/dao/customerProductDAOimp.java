@@ -33,10 +33,9 @@ public class customerProductDAOimp implements customerProductDAO {
 	}
 	
 	public Map<String,Integer> daysinmonth() {
-		LocalDate todayDate = LocalDate.now();
-		System.out.println("today "+todayDate);
-		String todaydatesplit[]=todayDate.toString().split("-");
-		LocalDate periousMonth = todayDate.minusMonths(1);
+		LocalDate periousMonth = LocalDate.now();
+		//String todaydatesplit[]=todayDate.toString().split("-");
+		//LocalDate periousMonth = todayDate.minusMonths(1);
 		System.out.println("Perious Month Date "+periousMonth);
 		Integer mon=0,tue=0,wed=0,thur=0,fri=0,sat=0,sun=0;
 		int numberOfDaysInMonth = periousMonth.getMonth().length(true);

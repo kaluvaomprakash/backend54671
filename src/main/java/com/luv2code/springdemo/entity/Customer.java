@@ -1,6 +1,6 @@
 package com.luv2code.springdemo.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import javax.persistence.Column;
@@ -42,7 +42,7 @@ public class Customer {
     private int customerPaid;
 	@CreationTimestamp
 	@Column(name = "created_date",nullable = false, updatable = false)
-	private LocalDate createdDate;
+	private LocalDateTime createdDate;
 	@Column(name="is_active")
 	private int isActive;
 	
@@ -108,10 +108,10 @@ public class Customer {
 	public void setCustomerPaid(int customerPaid) {
 		this.customerPaid = customerPaid;
 	}
-	public LocalDate getCreatedDate() {
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
-	public void setCreatedDate(LocalDate createdDate) {
+	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
 	}
 	public int getIsActive() {
